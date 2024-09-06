@@ -19,4 +19,6 @@ router.post('/create-task', authMidleware, TaskController.create);
 router.patch('/edit-task', authMidleware, TaskController.editBadRequest);
 router.patch('/edit-task/:id', authMidleware, TaskController.edit);
 
+router.get('/get-task', authMidleware, TaskController.getTask);
+
 export default router;

@@ -5,6 +5,7 @@ import { BadRequestError, GenericError } from "../errors/ApiErrors";
 
 import { createTask } from "../services/TaskServices/createTask";
 import { editTask } from "../services/TaskServices/editTask";
+import { getAllTaskOfUser, getTaskById } from "../services/TaskServices/getTask";
 
 export const TaskController = {
     async create(req: Request, res: Response) {
@@ -62,7 +63,36 @@ export const TaskController = {
         return res.status(400).json({ message: 'Precisa enviar o id da tarefa a editar.' });
     },
 
-    async getAll(req: Request, res: Response) { },
+    async getTask(req: Request, res: Response) {
+        const { user }: TaskDTO = req.body;
+        const { task_id } = req.query;
+
+        try {
+            if (task_id) {
+                const task = await getTaskById(user.id, String(task_id));
+
+                res.status(200).json({
+                    message: 'Tarefa encontrada.',
+                    task
+                });
+            } else {
+                const tasks = await getAllTaskOfUser(user.id);
+                
+                res.status(200).json({
+                    message: 'Lista de tarefas encontrada.',
+                    tasks
+                });
+            }
+        } catch (error) {
+            console.log(error);
+
+            if (error instanceof GenericError) {
+                return res.status(error.statusCode).json({ message: error.message });
+            }
+
+            return res.status(500).json({ message: 'Internal Server Error' });
+        }
+    },
 
     async markAsConcluded(req: Request, res: Response) { },
 

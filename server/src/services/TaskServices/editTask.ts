@@ -1,20 +1,20 @@
 import { TaskDTO } from "../../dtos/TaskDTO";
 import { NotFoundError } from "../../errors/ApiErrors";
 import TaskModel from "../../models/TaskModel";
-import { Types } from "mongoose";
+
+import { validateTaskId } from "../../utils/validateTaskId";
+import { isSameUser } from "../../utils/isSameUser";
 
 interface ITask extends TaskDTO {
     id: string;
 }
 
 export const editTask = async ({ title, description, user, id }: ITask) => {
-    if (!Types.ObjectId.isValid(id)) {
-        throw new NotFoundError('ID de tarefa inválido. Envie um ID válido.');
-    }
+    validateTaskId(id);
 
     const task = await TaskModel.findById(id);
 
-    if (!task || String(task.userId) !== String(user.id)) {
+    if (!task || !isSameUser(task.userId, user.id)) {
         throw new NotFoundError('Tarefa não encontrada.');
     }
 
