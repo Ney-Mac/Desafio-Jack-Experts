@@ -32,7 +32,7 @@ export const registerUser = async ({ email, password }: UserDTO) => {
     const token = jwt.sign(
         payload,
         String(process.env.JWT_SECRET),
-        { expiresIn: '1h' }
+        { expiresIn: '24h' }
     );
 
     console.log('Usuário registrado com sucesso.');

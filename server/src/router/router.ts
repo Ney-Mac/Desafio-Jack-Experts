@@ -16,4 +16,7 @@ router.post('/register', UserController.register);
 //Task routes
 router.post('/create-task', authMidleware, TaskController.create);
 
+router.patch('/edit-task', authMidleware, TaskController.editBadRequest);
+router.patch('/edit-task/:id', authMidleware, TaskController.edit);
+
 export default router;
