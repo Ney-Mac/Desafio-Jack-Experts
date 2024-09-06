@@ -3,21 +3,25 @@ import router from './router/router';
 import cors from 'cors';
 import { mongoDB } from './config/db_config';
 
-const app = express();
-const port = 3000;
+const server = () => {
+    const app = express();
+    const port = 3000;
 
-app.use(express.json());
+    app.use(express.json());
 
-mongoDB.connect();
+    mongoDB.connect();
 
-app.use(cors({
-    origin: '*',
-    methods: '*',
-    credentials: false
-}));
+    app.use(cors({
+        origin: '*',
+        methods: '*',
+        credentials: false
+    }));
 
-app.use(router);
+    app.use(router);
 
-app.listen(port, () => {
-    console.log(`Server running on: http://localhost:${port}`);
-});
+    app.listen(port, () => {
+        console.log(`Server running on: http://localhost:${port}`);
+    });
+}
+
+server();

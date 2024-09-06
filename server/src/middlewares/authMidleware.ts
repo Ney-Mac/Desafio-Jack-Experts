@@ -1,5 +1,4 @@
-import { Response, NextFunction } from "express";
-import { CustomRequest } from '../types/CustomRequest';
+import { Response, Request, NextFunction } from "express";
 
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -8,7 +7,7 @@ import { UnauthorizedError, GenericError } from "../errors/ApiErrors";
 
 dotenv.config();
 
-export function authMidleware(req: CustomRequest, res: Response, next: NextFunction) {
+export function authMidleware(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
 
     try {
@@ -19,8 +18,8 @@ export function authMidleware(req: CustomRequest, res: Response, next: NextFunct
         const token = authHeader.split(' ')[1];
         const decoded = jwt.verify(token, String(process.env.JWT_SECRET));
 
-        req.user = decoded;
-
+        req.body.user = decoded;
+  
         next();
     } catch (error) {
         console.log(error);

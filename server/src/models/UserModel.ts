@@ -1,5 +1,4 @@
 import { Schema, model, Document } from 'mongoose';
-import { UserDTO } from '../dtos/UserDTO';
 
 interface IUser extends Document {
     email: string;
