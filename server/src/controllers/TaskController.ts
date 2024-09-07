@@ -7,6 +7,7 @@ import { createTask } from "../services/TaskServices/createTask";
 import { editTask } from "../services/TaskServices/editTask";
 import { getAllTaskOfUser, getTaskById } from "../services/TaskServices/getTask";
 import { completeTask } from "../services/TaskServices/completeTask";
+import { deleteTask } from "../services/TaskServices/deleteTask";
 
 export const TaskController = {
     async create(req: Request, res: Response) {
@@ -122,5 +123,25 @@ export const TaskController = {
         }
     },
 
-    async delet(req: Request, res: Response) { },
+    async delet(req: Request, res: Response) {
+        const { user }: TaskDTO = req.body;
+        const { id } = req.params;
+
+        try {
+            const result = await deleteTask(user.id, id);
+
+            res.status(200).json({
+                message: `Tarefa ${result ? 'apagada' : 'não apagada'}.`
+            });
+
+        } catch (error) {
+            console.log(error);
+
+            if (error instanceof GenericError) {
+                return res.status(error.statusCode).json({ message: error.message });
+            }
+
+            return res.status(500).json({ message: 'Internal Server Error' });
+        }
+    },
 }
