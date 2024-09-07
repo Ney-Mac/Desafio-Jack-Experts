@@ -6,6 +6,7 @@ import { BadRequestError, GenericError } from "../errors/ApiErrors";
 import { createTask } from "../services/TaskServices/createTask";
 import { editTask } from "../services/TaskServices/editTask";
 import { getAllTaskOfUser, getTaskById } from "../services/TaskServices/getTask";
+import { completeTask } from "../services/TaskServices/completeTask";
 
 export const TaskController = {
     async create(req: Request, res: Response) {
@@ -77,7 +78,7 @@ export const TaskController = {
                 });
             } else {
                 const tasks = await getAllTaskOfUser(user.id);
-                
+
                 res.status(200).json({
                     message: 'Lista de tarefas encontrada.',
                     tasks
@@ -94,7 +95,32 @@ export const TaskController = {
         }
     },
 
-    async markAsConcluded(req: Request, res: Response) { },
+    async complete(req: Request, res: Response) {
+        const { user, completed }: TaskDTO & { completed: boolean } = req.body;
+        const { id } = req.params;
+
+        try {
+            if(completed === undefined || completed === null){
+                throw new BadRequestError('Envie o novo estato da tarefa.');
+            }
+
+            const task = await completeTask(user.id, id, completed);
+
+            res.status(200).json({
+                message: `Tarefa ${completed ? 'concluida' : 'por concluir'}.`,
+                task
+            });
+
+        } catch (error) {
+            console.log(error);
+
+            if (error instanceof GenericError) {
+                return res.status(error.statusCode).json({ message: error.message });
+            }
+
+            return res.status(500).json({ message: 'Internal Server Error' });
+        }
+    },
 
     async delet(req: Request, res: Response) { },
 }

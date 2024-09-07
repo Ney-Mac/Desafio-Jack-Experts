@@ -1,7 +1,8 @@
 import { NotFoundError } from "../../errors/ApiErrors";
-import TaskModel from "../../models/TaskModel"
+import TaskModel from "../../models/TaskModel";
+
 import { isSameUser } from "../../utils/isSameUser";
-import { validateTaskId } from "../../utils/validateTaskId"
+import { validateTaskId } from "../../utils/validateTaskId";
 
 export const getTaskById = async (userId: string, taskId: string) => {
     validateTaskId(taskId);

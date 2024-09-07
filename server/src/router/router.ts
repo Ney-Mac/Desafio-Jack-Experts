@@ -21,4 +21,6 @@ router.patch('/edit-task/:id', authMidleware, TaskController.edit);
 
 router.get('/get-task', authMidleware, TaskController.getTask);
 
+router.patch('/task/:id/completed', authMidleware, TaskController.complete);
+
 export default router;

@@ -4,6 +4,7 @@ interface ITask extends Document {
     title: string;
     description: string;
     userId: Types.ObjectId;
+    complete: boolean;
 }
 
 const taskSchema = new Schema<ITask>({
@@ -19,6 +20,10 @@ const taskSchema = new Schema<ITask>({
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    complete: {
+        type: Boolean,
+        default: false
     }
 });
 
