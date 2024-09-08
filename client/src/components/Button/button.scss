@@ -1,0 +1,22 @@
+@use '../../constants/colors.scss';
+@use '../../constants/sizes.scss';
+
+.button {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: sizes.$small-radius;
+    font-size: sizes.$text-main;
+    transition: all 0.5 ease;
+    background-color: colors.$primary;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+
+    &:hover {
+        background-color: colors.$secondary;
+    }
+}

@@ -1,0 +1,19 @@
+@use '../../constants/sizes.scss';
+@use '../../constants/colors.scss';
+@use '../../constants/mixins.scss';
+
+.register-container {
+    @include mixins.container;
+
+    .register-form {
+        @include mixins.login-form;
+
+        .form-title {
+            @include mixins.title;
+        }
+
+        .redirect-text {
+            @include mixins.redirect-text;
+        }
+    }
+}

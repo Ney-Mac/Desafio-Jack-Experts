@@ -1,0 +1,36 @@
+@use '../../constants/colors.scss';
+@use '../../constants/sizes.scss';
+
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    .input-label {
+        color: colors.$text-main;
+        font-size: sizes.$text-secondary;
+        font-weight: bold;
+    }
+
+    .input {
+        width: 100%;
+        background-color: transparent;
+        padding: 1rem 0;
+        border-radius: sizes.$small-radius;
+        border: 1.5px solid colors.$text-main;
+        padding-left: 4px;
+        color: colors.$text-main;
+
+        &:focus {
+            border-color: colors.$primary;
+            outline-style: none;
+        }
+    }
+
+    .input-error {
+        font-size: sizes.$label;
+        color: colors.$error;
+    }
+}

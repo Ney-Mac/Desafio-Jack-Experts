@@ -1,0 +1,47 @@
+@use './colors.scss';
+@use './sizes.scss';
+
+@mixin container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 320px;
+    height: fit-content;
+
+    background-color: colors.$background;
+    border-radius: sizes.$mid-radius;
+
+    padding: 1rem;
+    gap: 1rem;
+
+    box-shadow: 1px 1px 10px 3px rgba($color: #000000, $alpha: 0.5);
+
+    @media screen and (max-width: 320px) {
+        width: calc(320px - 2rem);
+    }
+}
+
+@mixin title {
+    color: colors.$primary;
+    font-size: sizes.$title;
+    text-align: center;
+}
+
+@mixin redirect-text {
+    font-size: sizes.$label;
+    color: colors.$text-main;
+
+    a {
+        color: colors.$primary;
+        font-weight: bold;
+    }
+}

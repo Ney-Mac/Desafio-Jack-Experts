@@ -1,0 +1,80 @@
+@use '../../constants/colors.scss';
+@use '../../constants/mixins.scss';
+@use '../../constantS/sizes.scss';
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 1rem 0;
+    position: relative;
+
+    .row-user {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+
+        @media screen and (max-width: 350px) {
+            gap: 0.25rem;
+        }
+
+        .user-data {
+            background-color: colors.$background;
+            border-radius: sizes.$big-radius;
+            display: flex;
+            padding: 1rem;
+            gap: 0.5rem;
+            flex: 1;
+            align-items: center;
+
+            .r-label {
+                color: colors.$text-main;
+                font-size: sizes.$text-secondary;
+            }
+
+            .r-email {
+                flex: 1;
+                color: colors.$text-main;
+                font-size: sizes.$text-main;
+            }
+
+            @media screen and (max-width: 350px) {
+                gap: 0.25rem;
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        .logout-btn {
+            border: none;
+            background-color: colors.$emphasis;
+            font-weight: bold;
+            padding: 0 1rem;
+            font-size: sizes.$text-main;
+            border-radius: sizes.$big-radius;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+        }
+    }
+
+    .tasks-container {
+        margin-top: 2rem;
+        width: 100%;
+        gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media screen and (max-width: 600px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .create-task-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        height: fit-content;
+        width: fit-content;
+    }
+}
