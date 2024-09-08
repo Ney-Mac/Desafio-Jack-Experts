@@ -13,11 +13,15 @@ import { validateEmail, validatePassword } from '../../utils/validateLoginForm';
 
 import { Button } from '../../components/Button/Button';
 
+import { useAuth } from '../../utils/useAuth';
+
 import './login.scss';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState<InputType>({ text: '', error: '' });
-    const [password, setPassword] = useState<InputType>({ text: '', error: '' });
+    const [email, setEmail] = useState<InputType>({ text: 'teste2@gmail.com', error: '' });
+    const [password, setPassword] = useState<InputType>({ text: '12345', error: '' });
+
+    const { login } = useAuth();
 
     const handleChange = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -50,7 +54,7 @@ const LoginPage = () => {
             return;
         }
 
-        alert('Login')
+        login(email.text, password.text);
     }
 
     return (

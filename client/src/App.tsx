@@ -1,6 +1,11 @@
 import { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
+import { useAuth } from './utils/useAuth';
+
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 const LoginPage = lazy(() => import('./pages/login/Login'));
 const RegisterPage = lazy(() => import('./pages/register/Register'));
 const HomePage = lazy(() => import('./pages/home/Home'));
@@ -20,15 +25,18 @@ const unauthRouter = createBrowserRouter([
 ]);
 
 const authRouter = createBrowserRouter([
-    { path: routes.home, element: <HomePage /> }
+    { path: routes.login, element: <Navigate to={routes.home} /> },
+    { path: routes.register, element: <Navigate to={routes.home} /> },
+    { path: routes.home, element: <HomePage /> },
 ])
 
 function App() {
-    let isAuth = true;
+    const { user } = useAuth();
 
     return (
         <Suspense>
-            <RouterProvider router={isAuth ? authRouter : unauthRouter} />
+            <RouterProvider router={user ? authRouter : unauthRouter} />
+            <ToastContainer />
         </Suspense>
     )
 }

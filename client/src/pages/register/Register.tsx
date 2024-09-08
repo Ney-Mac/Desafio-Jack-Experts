@@ -7,6 +7,8 @@ import {
 
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../../utils/useAuth';
+
 import { Input } from '../../components/Input/Input';
 import { InputType } from '../../types/InputLoginType';
 import { validateEmail, validatePassword } from '../../utils/validateLoginForm';
@@ -18,6 +20,8 @@ import './register.scss';
 const RegisterPage = () => {
     const [email, setEmail] = useState<InputType>({ text: '', error: '' });
     const [password, setPassword] = useState<InputType>({ text: '', error: '' });
+
+    const { register } = useAuth();
 
     const handleChange = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -50,7 +54,7 @@ const RegisterPage = () => {
             return;
         }
 
-        alert('Register')
+        register(email.text, password.text);
     }
 
     return (

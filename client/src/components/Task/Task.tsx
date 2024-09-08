@@ -1,11 +1,7 @@
+import { TaskType } from '../../types/TaskType';
 import './task.scss';
 
-type Props = {
-    title: string;
-    description: string;
-}
-
-export const Task = ({ title, description }: Props) => {
+export const Task = ({ title, description }: TaskType) => {
     return (
         <div className="task-container">
             <h3 className="task-title">{title}</h3>

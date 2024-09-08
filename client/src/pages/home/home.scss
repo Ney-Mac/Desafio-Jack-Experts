@@ -68,6 +68,26 @@
         @media screen and (max-width: 600px) {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        .empty-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            grid-column: 1/-1;
+
+            .empty-text {
+                color: colors.$text-main;
+                font-size: sizes.$subtitle;
+                text-align: center;
+            }
+
+            .empty-icon {
+                color: colors.$text-main;
+                height: 50%;
+                width: 50%;
+            }
+        }
     }
 
     .create-task-btn {
