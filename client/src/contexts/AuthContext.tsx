@@ -23,10 +23,11 @@ type AuthProps = {
 export const AuthContext = createContext<AuthProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: Props) => {
-    const { setRefresh } = useRefresh();
+    const { setRefresh, setIsLoading } = useRefresh();
     const [user, setUser] = useState<UserType>();
 
     const login = async (email: string, password: string) => {
+        setIsLoading(true);
         try {
             const res = await axios.post<AuthResponseType>(`${API_URL}/login`, {
                 email,
@@ -37,12 +38,15 @@ export const AuthProvider = ({ children }: Props) => {
             setUser(res.data.user);
 
             setRefresh(true);
+            setIsLoading(false);
         } catch (error) {
             useCatchError(error, 'Login');
+            setIsLoading(false);
         }
     }
 
     const register = async (email: string, password: string) => {
+        setIsLoading(true);
         try {
             const res = await axios.post<AuthResponseType>(`${API_URL}/register`, {
                 email,
@@ -53,25 +57,31 @@ export const AuthProvider = ({ children }: Props) => {
             setUser(res.data.user);
 
             setRefresh(false);
+            setIsLoading(false);
         } catch (error) {
-            useCatchError(error, 'Register')
+            useCatchError(error, 'Register');
+            setIsLoading(false);
         }
     }
 
     const splashLoad = () => {
+        setIsLoading(true);
         const savedUser = localStorage.getItem('user');
 
         if (savedUser) {
             setUser(JSON.parse(savedUser));
             setRefresh(true);
         }
+        setIsLoading(false);
     }
 
     const logout = () => {
+        setIsLoading(true);
         setUser(undefined);
         localStorage.removeItem('user');
 
         toast.success('Sessão terminada.');
+        setIsLoading(false);
     }
 
     useEffect(() => {

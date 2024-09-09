@@ -2,9 +2,9 @@ import { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
 import { useAuth } from './utils/useAuth';
+import { useRefresh } from './utils/useRefresh';
 
-import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { Spinner } from './components/Spinner/Spinner';
 
 const LoginPage = lazy(() => import('./pages/login/Login'));
 const RegisterPage = lazy(() => import('./pages/register/Register'));
@@ -32,11 +32,14 @@ const authRouter = createBrowserRouter([
 
 function App() {
     const { user } = useAuth();
+    const { isLoading } = useRefresh();
 
     return (
-        <Suspense>
-            <RouterProvider router={user ? authRouter : unauthRouter} />
-            <ToastContainer />
+        <Suspense fallback={<Spinner />}>
+            {isLoading ?
+                <Spinner />
+                : <RouterProvider router={user ? authRouter : unauthRouter} />
+            }
         </Suspense>
     )
 }
