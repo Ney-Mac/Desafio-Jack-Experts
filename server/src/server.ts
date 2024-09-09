@@ -2,26 +2,23 @@ import express from 'express';
 import router from './router/router';
 import cors from 'cors';
 import { mongoDB } from './config/db_config';
+import dotenv from 'dotenv';
 
-const server = () => {
-    const app = express();
-    const port = 3000;
+dotenv.config();
 
-    app.use(express.json());
+const app = express();
+const port = Number(process.env.PORT) | 3000;
 
-    mongoDB.connect();
+app.use(express.json());
 
-    app.use(cors({
-        origin: '*',
-        methods: '*',
-        credentials: false
-    }));
+mongoDB.connect();
 
-    app.use(router);
+app.use(cors({
+    origin: '*',
+    methods: '*',
+    credentials: false
+}));
 
-    app.listen(port, () => {
-        console.log(`Server running on: http://localhost:${port}`);
-    });
-}
+app.use(router);
 
-server();
+export default app;
