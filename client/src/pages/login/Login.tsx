@@ -18,8 +18,8 @@ import { useAuth } from '../../utils/useAuth';
 import './login.scss';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState<InputType>({ text: 'teste2@gmail.com', error: '' });
-    const [password, setPassword] = useState<InputType>({ text: '12345', error: '' });
+    const [email, setEmail] = useState<InputType>({ text: '', error: '' });
+    const [password, setPassword] = useState<InputType>({ text: '', error: '' });
 
     const { login } = useAuth();
 
@@ -66,7 +66,7 @@ const LoginPage = () => {
                     label='Email'
                     inputProps={{
                         placeholder: 'Digite seu email',
-                        // required: true,
+                        required: true,
                         name: 'email',
                         onChange: (event => handleChange(event, setEmail)),
                         value: email.text,
@@ -78,7 +78,7 @@ const LoginPage = () => {
                     label='Senha'
                     inputProps={{
                         placeholder: 'Digite sua senha',
-                        // required: true,
+                        required: true,
                         name: 'password',
                         onChange: (event => handleChange(event, setPassword)),
                         value: password.text,

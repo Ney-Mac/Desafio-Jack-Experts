@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_URL } from '../config';
+import { useCatchError } from '../utils/useCatch';
 
 export const deleteTask = async (id: string, token: string) => {
     try {
@@ -14,12 +15,6 @@ export const deleteTask = async (id: string, token: string) => {
 
         toast.success(res.data.message);
     } catch (error) {
-        console.log(error);
-
-        if (axios.isAxiosError(error)) {
-            toast.error(error.response?.data.message);
-        } else {
-            toast.error('Opps! Ocorreu algum erro.');
-        }
+        useCatchError(error, 'Delete Task');
     }
 }

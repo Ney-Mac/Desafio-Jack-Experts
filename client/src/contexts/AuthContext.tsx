@@ -6,7 +6,7 @@ import { AuthResponseType } from "../types/SuccessResponse";
 import { UserType } from "../types/User";
 
 import { toast } from 'react-toastify';
-
+import { useCatchError } from "../utils/useCatch";
 import { useRefresh } from "../utils/useRefresh";
 
 type Props = {
@@ -38,13 +38,7 @@ export const AuthProvider = ({ children }: Props) => {
 
             setRefresh(true);
         } catch (error) {
-            console.log(error);
-
-            if (axios.isAxiosError(error)) {
-                toast.error(error.response?.data.message);
-            } else {
-                toast.error('Opps! Ocorreu algum erro.');
-            }
+            useCatchError(error, 'Login');
         }
     }
 
@@ -60,13 +54,7 @@ export const AuthProvider = ({ children }: Props) => {
 
             setRefresh(false);
         } catch (error) {
-            console.log(error);
-
-            if (axios.isAxiosError(error)) {
-                toast.error(error.response?.data.message);
-            } else {
-                toast.error('Opps! Ocorreu algum erro.');
-            }
+            useCatchError(error, 'Register')
         }
     }
 

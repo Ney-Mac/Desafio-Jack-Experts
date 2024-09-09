@@ -66,7 +66,7 @@ const RegisterPage = () => {
                     label='Email'
                     inputProps={{
                         placeholder: 'Digite seu email',
-                        // required: true,
+                        required: true,
                         name: 'email',
                         onChange: (event => handleChange(event, setEmail)),
                         value: email.text,
@@ -78,7 +78,7 @@ const RegisterPage = () => {
                     label='Senha'
                     inputProps={{
                         placeholder: 'Digite sua senha',
-                        // required: true,
+                        required: true,
                         name: 'password',
                         onChange: (event => handleChange(event, setPassword)),
                         value: password.text,

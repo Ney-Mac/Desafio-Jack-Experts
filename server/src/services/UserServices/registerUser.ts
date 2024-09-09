@@ -6,11 +6,30 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-import { ConflictError } from "../../errors/ApiErrors";
+import { validate } from 'deep-email-validator';
+
+import { ConflictError, BadRequestError } from "../../errors/ApiErrors";
+import { validatePassword } from "../../utils/validatePassword";
 
 dotenv.config();
 
 export const registerUser = async ({ email, password }: UserDTO) => {
+    const res = await validate({
+        email: email,
+        sender: email,
+        validateRegex: true,
+        validateMx: true,
+        validateTypo: true,
+        validateDisposable: false,
+        validateSMTP: false,
+    });
+
+    if (!res.valid) {
+        throw new BadRequestError('Email inválido. Digite um email válido.');
+    }
+
+    validatePassword(password);
+
     let user = await UserModel.findOne({ email });
 
     if (user) {
