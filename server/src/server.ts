@@ -10,7 +10,7 @@ app.use(express.json());
 mongoDB.connect();
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://taskmanagement-fa2qpwrfo-macs-projects-c4ad142a.vercel.app',
     methods: '*',
     credentials: false
 }));
