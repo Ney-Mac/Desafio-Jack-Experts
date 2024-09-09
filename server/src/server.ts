@@ -11,8 +11,8 @@ mongoDB.connect();
 
 app.use(cors({
     origin: 'https://taskmanagement-fa2qpwrfo-macs-projects-c4ad142a.vercel.app',
-    methods: '*',
-    credentials: false
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Authorization', 'Content-Type']
 }));
 
 app.use(router);
