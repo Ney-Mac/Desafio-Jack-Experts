@@ -2,9 +2,6 @@ import express from 'express';
 import router from './router/router';
 import cors from 'cors';
 import { mongoDB } from './config/db_config';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const app = express();
 
