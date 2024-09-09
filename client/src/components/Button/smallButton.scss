@@ -1,0 +1,33 @@
+@use '../../constants/colors.scss';
+@use '../../constants/sizes.scss';
+
+.btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: sizes.$mid-radius;
+    cursor: pointer;
+    transition: transform ease 0.5s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &.success {
+        background-color: colors.$primary;
+
+        &:hover {
+            background-color: colors.$secondary;
+        }
+    }
+
+    &.error {
+        color: colors.$error;
+        background-color: transparent;
+        border: 1px solid colors.$error;
+
+        &:hover {
+            background-color: colors.$error;
+            color: #ffffff;
+        }
+    }
+}

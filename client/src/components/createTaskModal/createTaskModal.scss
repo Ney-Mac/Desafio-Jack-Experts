@@ -1,0 +1,10 @@
+@use '../../constants/colors.scss';
+@use '../../constants/mixins.scss';
+
+.modal-container {
+    @include mixins.modal-container;
+
+    .task-form {
+        @include mixins.login-form;
+    }
+}

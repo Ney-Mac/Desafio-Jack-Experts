@@ -8,20 +8,28 @@ import { MdLogout } from "react-icons/md";
 import { PiEmpty } from "react-icons/pi";
 
 import { useAuth } from '../../utils/useAuth';
+import { useRefresh } from '../../utils/useRefresh';
 
 import { TaskType } from '../../types/TaskType';
 import { getTask } from '../../api/getTask';
+
+import { CreateTaskModal } from '../../components/createTaskModal/CreateTaskModal';
 
 import './home.scss';
 
 export default function HomePage() {
     const { logout, user } = useAuth();
+    const { refresh, setRefresh } = useRefresh();
 
     const [tasks, setTasks] = useState<TaskType[]>([]);
+    const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
 
     useEffect(() => {
-        getTask(setTasks, user?.token!);
-    }, []);
+        if(refresh) {
+            getTask(setTasks, user?.token!);
+            setRefresh(false);
+        }
+    }, [refresh]);
 
     return (
         <main className="container">
@@ -44,8 +52,10 @@ export default function HomePage() {
                             key={index}
                             title={task.title}
                             description={task.description}
+                            id={task.id}
                         />
-                    ))
+                    )
+                    )
                     : <div className="empty-list">
                         <PiEmpty className='empty-icon' />
                         <p className="empty-text">Não há nenhuma tarefa na sua lista.</p>
@@ -54,12 +64,18 @@ export default function HomePage() {
             </div>
 
             <div className="create-task-btn">
-                <Button>
+                <Button
+                    onClick={() => { setShowCreateTaskModal(true) }}
+                >
                     <FaPlus />
                     Criar Nova Tarefa
                 </Button>
             </div>
 
+            <CreateTaskModal
+                setOpen={setShowCreateTaskModal}
+                open={showCreateTaskModal}
+            />
         </main>
     )
 }

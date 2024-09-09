@@ -7,6 +7,8 @@ import { UserType } from "../types/User";
 
 import { toast } from 'react-toastify';
 
+import { useRefresh } from "../utils/useRefresh";
+
 type Props = {
     children: React.ReactNode;
 }
@@ -21,6 +23,7 @@ type AuthProps = {
 export const AuthContext = createContext<AuthProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: Props) => {
+    const { setRefresh } = useRefresh();
     const [user, setUser] = useState<UserType>();
 
     const login = async (email: string, password: string) => {
@@ -30,10 +33,10 @@ export const AuthProvider = ({ children }: Props) => {
                 password
             });
 
-            console.log(res.data.message);
             localStorage.setItem('user', JSON.stringify(res.data.user));
             setUser(res.data.user);
 
+            setRefresh(true);
         } catch (error) {
             console.log(error);
 
@@ -52,10 +55,10 @@ export const AuthProvider = ({ children }: Props) => {
                 password
             });
 
-            console.log(res.data.message);
             localStorage.setItem('user', JSON.stringify(res.data.user));
             setUser(res.data.user);
 
+            setRefresh(false);
         } catch (error) {
             console.log(error);
 
@@ -72,6 +75,7 @@ export const AuthProvider = ({ children }: Props) => {
 
         if (savedUser) {
             setUser(JSON.parse(savedUser));
+            setRefresh(true);
         }
     }
 

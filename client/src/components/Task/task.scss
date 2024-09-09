@@ -10,7 +10,6 @@
     border-radius: sizes.$mid-radius;
     padding: 0.875rem;
     min-width: 136px;
-    // flex: 1;
 
     .task-title {
         font-size: sizes.$section-title;
@@ -18,6 +17,12 @@
 
     .task-description {
         font-size: sizes.$text-main;
+        flex: 1;
+    }
+
+    .btn-container {
+        display: flex;
+        gap: 1rem;
     }
 
     @media (prefers-color-scheme: light) {

@@ -1,0 +1,24 @@
+@use '../../constants/colors.scss';
+@use '../../constants/mixins.scss';
+@use '../../constants/sizes.scss';
+
+.modal-container {
+    @include mixins.modal-container;
+
+    .delete-container {
+        background-color: colors.$background;
+        padding: 2rem;
+        border-radius: sizes.$mid-radius;
+
+        .delete-text {
+            color: colors.$text-main;
+            margin-bottom: 1rem;
+            font-size: sizes.$section-title;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

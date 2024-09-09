@@ -17,10 +17,18 @@ export function getTask(setState: React.Dispatch<React.SetStateAction<TaskType[]
                 }
             });
 
-            console.log(res.data.message);
-            toast.success(res.data.message)
+            const parseRes = res.data.tasks.map(task => {
+                const parseTask: TaskType = {
+                    title: task.title,
+                    description: task.description,
+                    id: task._id
+                }
 
-            setState(res.data.tasks as TaskType[]);
+                return parseTask;
+            });
+            
+            toast.success(res.data.message)
+            setState(parseRes);
         } catch (error) {
             console.log(error);
 

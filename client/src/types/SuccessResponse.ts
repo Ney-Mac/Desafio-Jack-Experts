@@ -1,5 +1,4 @@
 import { UserType } from "./User";
-import { TaskType } from "./TaskType";
 
 export type AuthResponseType = {
     message: string;
@@ -8,5 +7,9 @@ export type AuthResponseType = {
 
 export type TaskResponseType = {
     message: string;
-    tasks: TaskType | TaskType[];
+    tasks: {
+        title: string;
+        description: string;
+        _id: string;
+    }[]
 }
