@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:3000'
+export const API_URL = 'https://taskmanager-931iz67hr-macs-projects-c4ad142a.vercel.app/';
