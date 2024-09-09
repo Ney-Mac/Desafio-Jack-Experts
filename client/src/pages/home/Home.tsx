@@ -53,6 +53,7 @@ export default function HomePage() {
                             title={task.title}
                             description={task.description}
                             id={task.id}
+                            complete={task.complete}
                         />
                     )
                     )

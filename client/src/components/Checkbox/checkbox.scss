@@ -1,0 +1,40 @@
+@use '../../constants/colors.scss';
+@use '../../constants/sizes.scss';
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    .checkbox {
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+        appearance: none;
+        background-color: #fff;
+        border-radius: sizes.$small-radius;
+        transition: background-color 0.2s, border-color 0.2s;
+
+        &:checked {
+            background-color: colors.$primary;
+
+            &::after {
+                content: '✓';
+                font-size: 0.875rem;
+                color: white;
+                display: flex;
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .checkbox-label {
+        font-size: sizes.$text-main;
+        color: sizes.$text-main;
+        cursor: pointer;
+    }
+}

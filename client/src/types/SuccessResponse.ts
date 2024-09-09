@@ -11,5 +11,6 @@ export type TaskResponseType = {
         title: string;
         description: string;
         _id: string;
+        complete?: boolean;
     }[]
 }

@@ -21,7 +21,8 @@ export function getTask(setState: React.Dispatch<React.SetStateAction<TaskType[]
                 const parseTask: TaskType = {
                     title: task.title,
                     description: task.description,
-                    id: task._id
+                    id: task._id,
+                    complete: task.complete
                 }
 
                 return parseTask;
