@@ -10,9 +10,8 @@ app.use(express.json());
 mongoDB.connect();
 
 app.use(cors({
-    origin: 'https://taskmanagement-five-rose.vercel.app',
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Authorization', 'Content-Type']
+    origin: 'https://taskmanagerclient.vercel.app',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE']
 }));
 
 app.use(router);
