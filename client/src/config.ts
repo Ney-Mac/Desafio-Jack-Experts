@@ -1,1 +1,1 @@
-export const API_URL = 'https://taskmanager-jea5uqd4u-macs-projects-c4ad142a.vercel.app';
+export const API_URL = 'https://taskmanagerapi-self.vercel.app';

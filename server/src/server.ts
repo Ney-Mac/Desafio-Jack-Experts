@@ -11,7 +11,9 @@ mongoDB.connect();
 
 app.use(cors({
     origin: 'https://taskmanagerclient.vercel.app',
-    methods: ['GET', 'POST', 'PATCH', 'DELETE']
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 
 app.use(router);
