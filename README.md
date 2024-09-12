@@ -1,6 +1,8 @@
 # Task Manager - Aplicação Fullstack para Gestão de Tarefas
 [ Este projeto e um desafio feito para aplicação a vaga de estágio full-stack na Jack Experts ]
 
+<img src="./readme_images/task_list.png" width="100%" height="300px" alt="Task Manager Image">
+
 ## Descrição
 
 Este é um sistema de gestão de tarefas desenvolvido como parte de um projeto para uma vaga de estágio fullstack. A aplicação permite que usuários se cadastrem, façam login e gerenciem suas tarefas de forma intuitiva e responsiva. Os principais recursos incluem:
@@ -94,3 +96,10 @@ Durante o desenvolvimento deste projeto, tomei as seguintes decisões:
    ```bash
      npm run dev
    ```
+
+## Imagens
+![Tela de login](./readme_images/login_page.png)
+![Tela principal](./readme_images/task_list.png)
+![Editar tarefa](./readme_images/edit_task.png)
+![Criar tarefa](./readme_images/create_task.png)
+![Apagar tarefa](./readme_images/delete_task.png)
