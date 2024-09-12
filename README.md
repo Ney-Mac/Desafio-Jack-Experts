@@ -98,8 +98,9 @@ Durante o desenvolvimento deste projeto, tomei as seguintes decisões:
    ```
 
 ## Imagens
-![Tela de login](./readme_images/login_page.png)
-![Tela principal](./readme_images/task_list.png)
-![Editar tarefa](./readme_images/edit_task.png)
-![Criar tarefa](./readme_images/create_task.png)
-![Apagar tarefa](./readme_images/delete_task.png)
+
+<img src="./readme_images/login_page.png" width="50%" alt="Tela de login">
+<img src="./readme_images/task_list.png" width="50%" alt="Tela principal">
+<img src="./readme_images/edit_task.png" width="50%" alt="Editar tarefa">
+<img src="./readme_images/create_task.png" width="50%" alt="Criar tarefa">
+<img src="./readme_images/delete_task.png" width="50%" alt="Apagar tarefa">
